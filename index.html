@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>시민 포스터 컬러 키트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gaegu:wght@700&family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Jua&display=swap">
+<style>
+/* Layout: drafting-table workbench — four numbered steps stacked on the left, the poster pinned on the right like a sheet on the table */
+:root{
+  --bg:#ECEEF2; --surface:#FFFFFF; --ink:#1B2130; --muted:#5D6677; --line:#D5DAE2;
+  --accent:#2F55D4; --accent-ink:#FFFFFF; --soft:#E2E8F8; --table:#D9DDE4;
+  --good:#1D7A4B; --good-bg:#DDF2E6; --warn:#985A00; --warn-bg:#FBEBD0; --bad:#B42318; --bad-bg:#FBE1DE;
+  --display:"Do Hyeon","IBM Plex Sans KR",system-ui,sans-serif;
+  --body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#13171F; --surface:#1B202A; --ink:#E6E9EF; --muted:#9AA3B3; --line:#2D3442;
+  --accent:#86A0F4; --accent-ink:#0E1320; --soft:#222B40; --table:#0E1117;
+  --good:#6BD19A; --good-bg:#16301F; --warn:#EDB25C; --warn-bg:#33270F; --bad:#F48C80; --bad-bg:#3A1A17;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#13171F; --surface:#1B202A; --ink:#E6E9EF; --muted:#9AA3B3; --line:#2D3442;
+  --accent:#86A0F4; --accent-ink:#0E1320; --soft:#222B40; --table:#0E1117;
+  --good:#6BD19A; --good-bg:#16301F; --warn:#EDB25C; --warn-bg:#33270F; --bad:#F48C80; --bad-bg:#3A1A17;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;padding-inline:16px;padding-block:20px 40px}
+.app{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,480px);gap:28px;align-items:start}
+header.top{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 20px;padding-bottom:4px}
+header.top h1{font-family:var(--display);font-weight:400;font-size:clamp(28px,4vw,38px);line-height:1.1;margin:0;letter-spacing:-.01em}
+header.top p{margin:4px 0 0;color:var(--muted);max-width:56ch}
+.chipline{display:flex;gap:3px}
+.chipline i{width:22px;height:34px;border-radius:3px;display:block}
+
+.steps{display:flex;flex-direction:column;gap:18px;min-width:0}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.step-h{display:flex;align-items:center;gap:12px}
+.step-n{font-family:var(--display);font-size:20px;width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--surface);display:grid;place-items:center;flex:none}
+.step-h h2{font-family:var(--display);font-weight:400;font-size:23px;margin:0;line-height:1.2}
+.hint{color:var(--muted);font-size:13.5px;margin:0}
+.label{font-size:12.5px;font-weight:600;letter-spacing:.04em;color:var(--muted);margin:0 0 6px}
+
+.presets{display:flex;flex-wrap:wrap;gap:8px}
+.preset{border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:14px;padding:7px 12px;border-radius:999px;cursor:pointer}
+.preset:hover{border-color:var(--accent)}
+.preset[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.field.wide{grid-column:1/-1}
+.field label{font-size:13px;font-weight:600}
+.field input{font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:100%}
+.field input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.field small{color:var(--muted);font-size:12px}
+
+.why{background:var(--soft);border-radius:10px;padding:10px 14px;font-size:14px}
+.why b{font-weight:600}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+.tab{font:inherit;font-size:13.5px;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px}
+.pchip{position:relative;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:5px;cursor:pointer;text-align:left;font:inherit;color:var(--ink);display:flex;flex-direction:column;gap:5px}
+.pchip:hover{border-color:var(--muted)}
+.pchip[aria-pressed="true"]{outline:3px solid var(--accent);outline-offset:1px;border-color:transparent}
+.pchip .sw{display:grid;grid-template-columns:1.4fr 1fr 1fr;height:46px;border-radius:6px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+.pchip .meta{display:flex;align-items:baseline;gap:5px;padding:0 2px 1px;min-width:0}
+.pchip .no{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.pchip .nm{font-size:11px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pchip .tag{position:absolute;top:-7px;right:-5px;background:var(--accent);color:var(--accent-ink);font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:999px}
+
+.roles{display:flex;flex-direction:column;gap:8px;border-top:1px dashed var(--line);padding-top:14px}
+.role{display:grid;grid-template-columns:86px 1fr auto;align-items:center;gap:10px}
+.role .rname{font-size:14px;font-weight:600}
+.role .opts{display:flex;gap:6px}
+.copt{width:38px;height:38px;border-radius:9px;border:2px solid var(--line);cursor:pointer;padding:0}
+.copt[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 2px var(--surface) inset}
+.badge{font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.badge.good{background:var(--good-bg);color:var(--good)}
+.badge.warn{background:var(--warn-bg);color:var(--warn)}
+.badge.bad{background:var(--bad-bg);color:var(--bad)}
+.badge.none{background:transparent;color:var(--muted)}
+.rowbtns{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{font:inherit;font-size:14px;font-weight:600;padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{font:inherit;font-size:14px;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;position:relative}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.seg .rec{font-size:10.5px;font-weight:700;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:1px 6px;margin-left:5px;vertical-align:1px}
+
+.upload{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.thumb{width:92px;height:72px;border-radius:8px;object-fit:cover;border:1px solid var(--line);background:var(--bg)}
+.upload input[type=file]{position:absolute;width:1px;height:1px;opacity:0}
+.imgcols{display:flex;flex-direction:column;gap:6px}
+.found{display:flex;flex-wrap:wrap;gap:8px}
+.fcol{display:flex;align-items:center;gap:8px;background:var(--bg);border-radius:10px;padding:5px 10px 5px 5px;font-size:12.5px}
+.fcol i{width:26px;height:26px;border-radius:6px;display:block;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.fcol .arrow{color:var(--muted)}
+.meter{display:flex;align-items:center;gap:10px;font-size:14px}
+.meter .bar{flex:1;height:8px;border-radius:999px;background:var(--bg);overflow:hidden;max-width:220px}
+.meter .bar span{display:block;height:100%;border-radius:inherit}
+.advice{background:var(--soft);border-radius:10px;padding:12px 14px;font-size:14px;display:flex;flex-direction:column;gap:6px}
+.advice p{margin:0}
+.minis{display:flex;flex-wrap:wrap;gap:8px}
+.mini{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:12.5px;padding:5px 10px 5px 5px;border-radius:10px;cursor:pointer}
+.mini:hover{border-color:var(--accent)}
+.mini .sw{display:flex;border-radius:5px;overflow:hidden}
+.mini .sw i{width:16px;height:26px;display:block}
+
+.hexlist{display:flex;flex-direction:column;gap:8px}
+.hexrow{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:12px;padding:8px;border:1px solid var(--line);border-radius:12px}
+.hexrow i{width:44px;height:44px;border-radius:8px;display:block;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.hexrow .t{display:flex;flex-direction:column;min-width:0}
+.hexrow .t b{font-size:13px;font-weight:600}
+.hexrow .t code{font-family:var(--mono);font-size:17px;letter-spacing:.02em}
+.hexrow .t span{font-size:12px;color:var(--muted)}
+.howto{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px;font-size:14px}
+.howto code{font-family:var(--mono);background:var(--bg);padding:1px 5px;border-radius:4px}
+
+.stage{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);background:var(--table);border-radius:16px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.stage .seg{justify-content:center}
+.poster-wrap{width:min(100%, calc((100vh - 190px) / 1.414));min-width:240px}
+.stage .cap{font-size:12.5px;color:var(--muted);text-align:center;margin:0;max-width:40ch}
+
+/* ---------- poster ---------- */
+.poster{--pbg:#F8F5EE;--ptitle:#1F3A5F;--paccent:#D4A017;--pframe:#D4A017;
+  position:relative;width:100%;aspect-ratio:1/1.414;background:var(--pbg);color:var(--ptitle);overflow:hidden;container-type:inline-size;border-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.12),0 12px 30px rgba(0,0,0,.14)}
+.p-photo{position:absolute;overflow:hidden;background:var(--pframe);border:1.6cqw solid var(--pframe)}
+.p-photo img{width:100%;height:100%;object-fit:cover;display:block;max-width:none}
+.p-text{position:absolute;display:flex;flex-direction:column;gap:2.4cqw}
+.p-bar{display:block;width:14cqw;height:1.5cqw;background:var(--paccent);border-radius:1cqw;flex:none}
+.p-title{margin:0;line-height:1.16;word-break:keep-all;overflow-wrap:break-word;text-wrap:balance;font-weight:400;letter-spacing:-.01em}
+.p-title .hl{color:var(--paccent)}
+.p-sub{margin:0;font-size:4.3cqw;line-height:1.4;word-break:keep-all;opacity:.88}
+.p-foot{position:absolute;left:7%;right:7%;bottom:3.6%;display:flex;justify-content:space-between;gap:3cqw;font-size:2.7cqw;padding-top:1.6cqw;border-top:.35cqw solid color-mix(in srgb,var(--ptitle) 45%,transparent);opacity:.85}
+.p-dot{position:absolute;display:none;border-radius:50%;background:var(--paccent)}
+
+.poster[data-layout="a"] .p-photo{left:7%;right:7%;top:5%;height:50%;border-radius:1.2cqw}
+.poster[data-layout="a"] .p-text{left:7%;right:7%;top:59%;bottom:10%}
+
+.poster[data-layout="b"] .p-photo{left:0;right:0;top:0;height:63%;border:none;border-bottom:2.2cqw solid var(--pframe)}
+.poster[data-layout="b"] .p-text{left:7%;right:7%;top:68%;bottom:10%}
+
+.poster[data-layout="c"] .p-photo{width:68cqw;height:68cqw;right:-8cqw;bottom:9%;border-radius:50%;border-width:2.2cqw}
+.poster[data-layout="c"] .p-text{left:8%;right:8%;top:6.5%}
+.poster[data-layout="c"] .p-dot{display:block;width:20cqw;height:20cqw;left:9%;bottom:19%}
+.poster[data-layout="c"] .p-sub{max-width:62cqw}
+
+.p-block{position:absolute;display:none;background:var(--paccent)}
+.poster[data-layout="d"] .p-text{left:7%;right:7%;top:6%}
+.poster[data-layout="d"] .p-photo{left:7%;right:7%;top:44%;bottom:11%;border-radius:1.2cqw}
+
+.poster[data-layout="e"] .p-photo{left:13%;right:13%;top:7%;height:47%;border-width:3cqw;border-bottom-width:9cqw;transform:rotate(-4deg);box-shadow:0 1.2cqw 3cqw rgba(0,0,0,.18)}
+.poster[data-layout="e"] .p-text{left:9%;right:9%;top:62%;bottom:10%;align-items:center;text-align:center}
+.poster[data-layout="e"] .p-dot{display:block;width:13cqw;height:13cqw;right:6%;top:4%}
+
+.poster[data-layout="f"] .p-block{display:block;left:0;right:0;top:0;height:40%}
+.poster[data-layout="f"] .p-photo{width:56cqw;height:56cqw;left:22cqw;top:12%;border-radius:50%;border-width:2.2cqw;border-color:var(--pbg)}
+.poster[data-layout="f"] .p-text{left:8%;right:8%;top:66%;bottom:10%;align-items:center;text-align:center}
+.poster[data-layout="f"] .p-bar{display:none}
+
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--surface);padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.credit{grid-column:1/-1;color:var(--muted);font-size:12.5px;margin:4px 0 0}
+.credit a{color:inherit}
+
+button:focus-visible,label.btn:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+
+@media (max-width: 900px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .stage{position:static;order:-1}
+  header.top{order:-2}
+  .poster-wrap{width:min(100%, calc(60vh / 1.414))}
+}
+@media (max-width: 520px){
+  .fields{grid-template-columns:1fr}
+  .step{padding:16px}
+  .role{grid-template-columns:72px 1fr;row-gap:4px}
+  .role .badge{grid-column:2}
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <header class="top">
+    <div>
+      <h1>시민 포스터 컬러 키트</h1>
+      <p>문구를 쓰고, 색 조합을 고르고, 사진을 넣어 보세요. 마음에 드는 조합이 나오면 4번의 색 코드를 캔바에 그대로 옮기면 돼요.</p>
+    </div>
+    <div class="chipline" id="headChips" aria-hidden="true"></div>
+  </header>
+
+  <div class="steps">
+    <!-- 1 -->
+    <section class="step" aria-labelledby="s1">
+      <div class="step-h"><span class="step-n">1</span><h2 id="s1">어떤 말을 전할까요?</h2></div>
+      <p class="hint">지금 들어 있는 문구는 예시예요. 지우고 <b>내가 전하고 싶은 말</b>로 바꿔 쓰세요.</p>
+      <div>
+        <p class="label">생각이 안 나면 낱말을 눌러 이어 붙여 보세요</p>
+        <div class="presets" id="presets"></div>
+      </div>
+      <div class="fields">
+        <div class="field wide">
+          <label for="inTitle">큰 글씨 (제목)</label>
+          <input id="inTitle" maxlength="20" autocomplete="off">
+          <small>20자까지 · 짧을수록 멀리서도 잘 보여요</small>
+        </div>
+        <div class="field wide">
+          <label for="inSub">작은 글씨 (한 줄 설명)</label>
+          <input id="inSub" maxlength="34" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="inHl">포인트 색으로 칠할 낱말</label>
+          <input id="inHl" maxlength="10" autocomplete="off">
+          <small>제목 속 낱말 하나</small>
+        </div>
+        <div class="field">
+          <label for="inFoot">만든 사람</label>
+          <input id="inFoot" maxlength="20" autocomplete="off">
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="step" aria-labelledby="s2">
+      <div class="step-h"><span class="step-n">2</span><h2 id="s2">색 조합 고르기</h2></div>
+      <div class="why" id="why"></div>
+      <div class="rowbtns">
+        <button class="btn" id="reroll" type="button">다른 추천 보기 ↻</button>
+        <button class="btn" id="mine" type="button">내 사진 색으로 나만의 조합 만들기</button>
+      </div>
+      <div class="tabs" id="tabs"></div>
+      <div class="pgrid" id="pgrid"></div>
+      <div class="roles" id="roles"></div>
+      <div class="rowbtns">
+        <button class="btn" id="autoRoles" type="button">색 역할 자동으로 정하기</button>
+      </div>
+      <div>
+        <p class="label">글꼴 느낌</p>
+        <div class="seg" id="fontSeg"></div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="step" aria-labelledby="s3">
+      <div class="step-h"><span class="step-n">3</span><h2 id="s3">사진 넣기</h2></div>
+      <div class="upload">
+        <img class="thumb" id="thumb" alt="올린 사진 미리보기">
+        <div class="imgcols">
+          <label class="btn primary" for="file">사진 올리기<input type="file" id="file" accept="image/*"></label>
+          <p class="hint" id="imgNote">지금은 예시 그림이에요. 내 사진이나 그림을 올려 보세요.</p>
+        </div>
+      </div>
+      <div>
+        <p class="label">사진 속 주요 색 → 팔레트에서 가장 가까운 색</p>
+        <div class="found" id="found"></div>
+      </div>
+      <div class="meter" id="meter"></div>
+      <div>
+        <p class="label">사진 색 처리</p>
+        <div class="seg" id="treatSeg"></div>
+      </div>
+      <div class="advice" id="advice"></div>
+      <div>
+        <p class="label">이 사진과 잘 어울리는 다른 조합</p>
+        <div class="minis" id="minis"></div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="step" aria-labelledby="s4">
+      <div class="step-h"><span class="step-n">4</span><h2 id="s4">캔바로 옮기기</h2></div>
+      <p class="hint">색 코드를 눌러 복사한 뒤 캔바 색상 창의 <b>#</b> 칸에 붙여 넣으세요.</p>
+      <div class="hexlist" id="hexlist"></div>
+      <ol class="howto" id="howto"></ol>
+    </section>
+  </div>
+
+  <aside class="stage" aria-label="포스터 미리보기">
+    <div class="seg" id="layoutSeg"></div>
+    <div class="poster-wrap">
+      <div class="poster" id="poster" data-layout="a">
+        <div class="p-block"></div>
+        <div class="p-dot"></div>
+        <div class="p-photo"><img id="pImg" alt="포스터에 넣은 사진"></div>
+        <div class="p-text">
+          <span class="p-bar"></span>
+          <h2 class="p-title" id="pTitle"></h2>
+          <p class="p-sub" id="pSub"></p>
+        </div>
+        <div class="p-foot"><span id="pFoot"></span><span>함께하는 시민 사회</span></div>
+      </div>
+    </div>
+    <p class="cap">배치는 아이디어일 뿐이에요. 캔바에서는 크기·위치·모양을 내 생각대로 바꿔서, 친구와 다른 포스터를 만들어 보세요.</p>
+  </aside>
+
+  <p class="credit">색 조합 30가지 출처: OLD KID STUDIOS 「컬러 조합 30 — 올드키즈 컬러 키트」 · 사진은 이 화면 안에서만 쓰이고 어디에도 올라가지 않아요.</p>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ---------- data ---------- */
+const PALETTES = [
+ [1,'따뜻한',['Vanilla','Flamingo','Brown'],['#F3E5AB','#FC8EAC','#6B4423']],
+ [2,'산뜻한',['Off White','Pistachio','Cherry Red'],['#FAF9F6','#93C572','#C41E3A']],
+ [3,'따뜻한',['Cream','Butter Yellow','Mocha'],['#FFF6D6','#F6D77A','#8B6B5A']],
+ [4,'따뜻한',['Vanilla Beige','Coffee Brown','Apple Red'],['#EDE0C8','#4B3621','#C8322B']],
+ [5,'차분한',['Alabaster','Olive','Plum Wine'],['#EDEADE','#6F6F2E','#5C2A3B']],
+ [6,'차분한',['Greige','Lilac','Deep Navy'],['#B8B0A6','#C8A2C8','#1B2A49']],
+ [7,'자연',['Sand','Peach','Forest Green'],['#DCCBAA','#F5C0A0','#2E5E3E']],
+ [8,'차분한',['Ivory','Rose Dust','Charcoal'],['#F5F0E1','#D4A5A5','#36454F']],
+ [9,'차분한',['Soft Beige','Light Blue','Cool Brown'],['#E8DCC8','#B7CFE0','#6E5B4E']],
+ [10,'자연',['Off White','Eucalyptus','Clay'],['#F6F3EC','#8FA98F','#B9856B']],
+ [11,'따뜻한',['Ivory','Camel','Burgundy'],['#F5F0E1','#C19A6B','#6E1E2B']],
+ [12,'산뜻한',['Apricot','Dress Blues','Chocolate'],['#F2B27A','#2B3A67','#3F2A1D']],
+ [13,'차분한',['Milky Pink','Black','Gold'],['#F2D8D5','#1A1A1A','#C9A961']],
+ [14,'차분한',['White','Lavender','Slate'],['#FFFFFF','#B4A7D6','#5B6770']],
+ [15,'자연',['Ivory','Dusty Rose','Sage'],['#F7F3EA','#C9A0A0','#A3B18A']],
+ [16,'산뜻한',['Buttercream','Coral','Deep Green'],['#FBEFC8','#F0876E','#1F4D3A']],
+ [17,'자연',['Oatmeal','Sage Green','Terracotta'],['#E3D9C6','#9CAF88','#C8643C']],
+ [18,'따뜻한',['Tan','Rust Red','Flame Orange'],['#D2B48C','#B7410E','#E25822']],
+ [19,'산뜻한',['Popcorn','Cerulean Blue','Chocolate'],['#FDF2C4','#2A52BE','#3F2A1D']],
+ [20,'산뜻한',['Bright White','Dark Green','Strong Red'],['#FFFFFF','#0B3D2E','#B22222']],
+ [21,'산뜻한',['Linen','Parsley Green','Tomato Red'],['#EDE6D6','#4A6741','#C0392B']],
+ [22,'차분한',['Black','Wine','Brass'],['#141414','#722F37','#B5A642']],
+ [23,'자연',['Champagne','Silver','Emerald'],['#F3E1C4','#BFC1C2','#14532D']],
+ [24,'산뜻한',['Paper','Ink Blue','Mustard'],['#F8F5EE','#1F3A5F','#D4A017']],
+ [25,'산뜻한',['Sky Blue','Lemon','Coral Red'],['#8CC7E8','#F7E36B','#E8604C']],
+ [26,'따뜻한',['Cream','Honey','Cocoa'],['#FAF3E0','#E3B04B','#6B4A3A']],
+ [27,'자연',['Off White','Stone','Deep Olive'],['#F6F4EF','#A8A29E','#4B5320']],
+ [28,'따뜻한',['Oat','Clay Pink','Wood'],['#EFE8DA','#D8A48F','#8C6A4F']],
+ [29,'차분한',['Warm White','Charcoal','Caramel'],['#F5F1EA','#2B2B2B','#B9773A']],
+ [30,'자연',['White','Pale Mint','Navy'],['#FFFFFF','#CFE8E1','#1F3B5B']],
+].map(([id,mood,names,hex])=>({id,mood,names,hex}));
+const byId = id => id===0 ? (st.custom||PALETTES[0]) : PALETTES.find(p=>p.id===id);
+
+const EXAMPLES = [
+ {t:'함께 사는 시민사회', s:'서로 돕는 우리가 만드는 세상', h:'함께'},
+ {t:'모두의 목소리', s:'한 사람 한 사람의 의견이 소중해요', h:'모두'},
+ {t:'다름을 존중해요', s:'생각이 달라도 우리는 친구', h:'존중'},
+ {t:'나부터 지키는 약속', s:'규칙을 지키면 모두가 안전해요', h:'약속'},
+ {t:'우리 동네 지구 지킴이', s:'쓰레기 줍기, 오늘부터 함께해요', h:'지구'},
+ {t:'이웃에게 먼저 인사해요', s:'인사 한마디가 동네를 바꿔요', h:'인사'},
+ {t:'나눔은 두 배의 기쁨', s:'작은 것도 함께 나누면 커져요', h:'나눔'},
+ {t:'내가 바로 시민', s:'오늘 내가 한 작은 일이 사회를 움직여요', h:'시민'},
+];
+const WORDS = ['함께','시민','우리','약속','존중','나눔','배려','이웃','목소리','참여','안전','지구','친구','손잡고','마음','오늘부터'];
+
+const RULES = [
+ {keys:['환경','지구','자연','나무','숲','초록','쓰레기','에너지','기후'], ids:[7,17,21,10,15,27,23,2], tone:'자연을 닮은 초록'},
+ {keys:['존중','평화','마음','공감','차별','다름','다양','인권','친구'], ids:[6,15,9,14,8,28,30,5], tone:'부드럽고 차분한 색'},
+ {keys:['안전','약속','규칙','질서','법','멈춰','조심','지키'], ids:[20,2,18,21,4,25,11,12], tone:'눈에 확 띄는 빨강'},
+ {keys:['시민','사회','민주','참여','권리','책임','투표','의견','목소리','공동체','모두'], ids:[24,30,19,12,6,14,22,29], tone:'믿음직한 파랑'},
+ {keys:['함께','협력','우리','나눔','배려','도움','돕','이웃','봉사','인사','손잡'], ids:[16,25,26,1,3,28,17,18], tone:'밝고 따뜻한 색'},
+];
+/* every device gets its own shuffle, so the same title doesn't give the whole class the same four */
+function rng(seed){ return ()=>{ seed|=0; seed=seed+0x6D2B79F5|0; let t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function shuffled(arr, seed){ const r=rng(seed), a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(r()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+const FONTS = {
+ bhs:{label:'힘 있게', title:'"Black Han Sans"', sub:'"Gowun Dodum"', canva:'Black Han Sans (검은고딕 느낌)'},
+ jua:{label:'동글동글', title:'"Jua"', sub:'"Jua"', canva:'Jua (주아체)'},
+ gaegu:{label:'손글씨', title:'"Gaegu"', sub:'"Gaegu"', canva:'Gaegu (개구체)'},
+ batang:{label:'단정하게', title:'"Gowun Batang"', sub:'"Gowun Batang"', canva:'Gowun Batang (고운바탕)'},
+};
+const LAYOUTS = {a:'사진 위 · 글자 아래', b:'큰 사진 + 글자', c:'큰 글씨 + 동그란 사진', d:'글자 위 · 사진 아래', e:'기울인 사진', f:'색 면 나누기'};
+const TREATS = {orig:'원본 그대로', duo:'팔레트 색 입히기', gray:'흑백'};
+const MOODS = ['추천','전체','따뜻한','산뜻한','차분한','자연','내 사진'];
+
+/* ---------- color math ---------- */
+const hexToRgb = h => [1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const rgbToHex = ([r,g,b]) => '#'+[r,g,b].map(v=>Math.round(Math.max(0,Math.min(255,v))).toString(16).padStart(2,'0')).join('').toUpperCase();
+const lin = c => {c/=255;return c<=0.03928?c/12.92:Math.pow((c+0.055)/1.055,2.4)};
+const relLum = rgb => 0.2126*lin(rgb[0])+0.7152*lin(rgb[1])+0.0722*lin(rgb[2]);
+const contrast = (a,b) => {const la=relLum(hexToRgb(a)),lb=relLum(hexToRgb(b));return (Math.max(la,lb)+0.05)/(Math.min(la,lb)+0.05)};
+function rgbToLab([r,g,b]){
+  const R=lin(r),G=lin(g),B=lin(b);
+  let x=(R*0.4124+G*0.3576+B*0.1805)/0.95047, y=(R*0.2126+G*0.7152+B*0.0722), z=(R*0.0193+G*0.1192+B*0.9505)/1.08883;
+  const f=t=>t>0.008856?Math.cbrt(t):(7.787*t+16/116);
+  x=f(x);y=f(y);z=f(z);
+  return [116*y-16, 500*(x-y), 200*(y-z)];
+}
+const dE = (a,b) => Math.hypot(a[0]-b[0],a[1]-b[1],a[2]-b[2]);
+const labOfHex = h => rgbToLab(hexToRgb(h));
+
+/* ---------- state ---------- */
+const seed0 = Math.floor(Math.random()*1e9);
+const ex0 = EXAMPLES[seed0 % EXAMPLES.length];
+const st = {
+  title:ex0.t, sub:ex0.s, hl:ex0.h, foot:'6학년 ○반 ○○○', exIdx:seed0 % EXAMPLES.length,
+  pal:null, roles:{bg:0,title:2,accent:1}, font:Object.keys(FONTS)[seed0%4], layout:Object.keys(LAYOUTS)[seed0%6],
+  treat:'orig', filter:'추천', treatTouched:false, seed:seed0, custom:null,
+  img:null, origURL:'', clusters:[], cache:{}
+};
+const SAVE_KEYS=['title','sub','hl','foot','pal','roles','font','layout','seed'];
+try{
+  const saved = JSON.parse(localStorage.getItem('posterKit2')||'null');
+  if(saved){ for(const k of SAVE_KEYS) if(saved[k]!==undefined) st[k]=saved[k]; }
+}catch(e){}
+function save(){ try{ const o={}; SAVE_KEYS.forEach(k=>o[k]=st[k]); localStorage.setItem('posterKit2', JSON.stringify(o)); }catch(e){} }
+
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pal = () => byId(st.pal);
+const roleHex = r => pal().hex[st.roles[r]];
+
+/* ---------- recommendations ---------- */
+function recommendFromText(text){
+  const matched=[];
+  for(const r of RULES){
+    const found=r.keys.find(k=>text.includes(k));
+    if(found) matched.push({...r,found,pos:text.indexOf(found)});
+  }
+  matched.sort((a,b)=>a.pos-b.pos);
+  if(!matched.length) return {ids:shuffled(PALETTES.map(p=>p.id),st.seed).slice(0,4), html:'제목에서 색을 정할 낱말을 찾지 못해서 30가지 중에 4개를 골라 왔어요. ‘다른 추천 보기’로 계속 바꿔 볼 수 있어요.'};
+  const pool=[]; matched.forEach(m=>m.ids.forEach(id=>{ if(!pool.includes(id)) pool.push(id); }));
+  const ids=shuffled(pool,st.seed).slice(0,4);
+  const words=matched.slice(0,3).map(m=>`<b>‘${esc(m.found)}’</b>`).join(' ');
+  const tones=[...new Set(matched.slice(0,2).map(m=>m.tone))].join(', ');
+  return {ids, html:`제목에 ${words} 같은 말이 있어서 <b>${tones}</b>이 들어간 조합 ${pool.length}가지 중 4개를 골라 왔어요. 친구와 같은 걸 받을 수도 있으니 ‘다른 추천 보기’로 더 찾아보세요.`};
+}
+function autoRoles(p){
+  const L=p.hex.map(h=>relLum(hexToRgb(h)));
+  const idx=[0,1,2].sort((a,b)=>L[a]-L[b]); // dark → light
+  const [dark,mid,light]=idx;
+  if(L[light]>0.45) return {bg:light,title:dark,accent:mid};
+  return {bg:dark,title:light,accent:mid};
+}
+function harmony(p){
+  if(!st.clusters.length) return 0;
+  const labs=p.hex.map(labOfHex); let s=0,w=0;
+  for(const c of st.clusters){ s+=c.w*Math.min(...labs.map(l=>dE(l,c.lab))); w+=c.w; }
+  return s/w;
+}
+function duoColors(){
+  const p=pal(); const L=p.hex.map(h=>relLum(hexToRgb(h)));
+  const order=[0,1,2].sort((a,b)=>L[a]-L[b]);
+  const shadow=p.hex[order[0]];
+  const acc=st.roles.accent;
+  const hi = (L[acc]-L[order[0]]>0.12 && acc!==order[0]) ? p.hex[acc] : p.hex[order[2]];
+  return {shadow,hi};
+}
+function frameIndex(){
+  if(!st.clusters.length) return st.roles.accent;
+  let lab=[0,0,0],w=0; for(const c of st.clusters){ for(let i=0;i<3;i++) lab[i]+=c.lab[i]*c.w; w+=c.w; }
+  lab=lab.map(v=>v/w);
+  const p=pal(); const cands=[st.roles.accent,st.roles.title];
+  // whichever of 포인트/제목 색 stands out more from the photo, preferring 포인트
+  const d=cands.map(i=>dE(labOfHex(p.hex[i]),lab));
+  return d[0]>=d[1]*0.7 ? cands[0] : cands[1];
+}
+
+/* ---------- image processing ---------- */
+function analyze(img){
+  const c=document.createElement('canvas'); const N=56;
+  const r=Math.min(N/img.naturalWidth,N/img.naturalHeight,1);
+  c.width=Math.max(1,Math.round(img.naturalWidth*r)); c.height=Math.max(1,Math.round(img.naturalHeight*r));
+  const x=c.getContext('2d',{willReadFrequently:true}); x.drawImage(img,0,0,c.width,c.height);
+  const d=x.getImageData(0,0,c.width,c.height).data; const pts=[];
+  for(let i=0;i<d.length;i+=4){ if(d[i+3]<128) continue; pts.push({rgb:[d[i],d[i+1],d[i+2]],lab:rgbToLab([d[i],d[i+1],d[i+2]])}); }
+  if(!pts.length) return [];
+  const K=5; const sorted=[...pts].sort((a,b)=>a.lab[0]-b.lab[0]);
+  let cents=[...Array(K)].map((_,k)=>sorted[Math.floor((k+0.5)/K*sorted.length)].lab.slice());
+  let assign=new Array(pts.length).fill(0);
+  for(let it=0;it<12;it++){
+    pts.forEach((p,i)=>{let b=0,bd=1e9;cents.forEach((c,k)=>{const dd=dE(p.lab,c);if(dd<bd){bd=dd;b=k}});assign[i]=b});
+    const sum=cents.map(()=>({l:[0,0,0],r:[0,0,0],n:0}));
+    pts.forEach((p,i)=>{const s=sum[assign[i]];for(let j=0;j<3;j++){s.l[j]+=p.lab[j];s.r[j]+=p.rgb[j]}s.n++});
+    cents=cents.map((c,k)=>sum[k].n?sum[k].l.map(v=>v/sum[k].n):c);
+    if(it===11) return sum.map((s,k)=>s.n?{lab:cents[k],rgb:s.r.map(v=>v/s.n),hex:rgbToHex(s.r.map(v=>v/s.n)),w:s.n/pts.length}:null)
+      .filter(c=>c&&c.w>=0.04).sort((a,b)=>b.w-a.w).slice(0,4);
+  }
+}
+function processed(kind){
+  if(!st.img) return '';
+  if(kind==='orig') return st.origURL;
+  const dc=duoColors(); const key=kind==='duo'?`duo${dc.shadow}${dc.hi}`:'gray';
+  if(st.cache[key]) return st.cache[key];
+  const img=st.img; const M=900; const r=Math.min(M/img.naturalWidth,M/img.naturalHeight,1);
+  const c=document.createElement('canvas'); c.width=Math.round(img.naturalWidth*r); c.height=Math.round(img.naturalHeight*r);
+  const x=c.getContext('2d'); x.drawImage(img,0,0,c.width,c.height);
+  const id=x.getImageData(0,0,c.width,c.height); const d=id.data;
+  // find luminance spread so the duotone uses its full range
+  const hist=new Uint32Array(256); for(let i=0;i<d.length;i+=4){hist[Math.round(0.299*d[i]+0.587*d[i+1]+0.114*d[i+2])]++}
+  const total=d.length/4; let acc=0,lo=0,hi=255;
+  for(let v=0;v<256;v++){acc+=hist[v]; if(acc>total*0.02){lo=v;break}}
+  acc=0; for(let v=255;v>=0;v--){acc+=hist[v]; if(acc>total*0.02){hi=v;break}}
+  const span=Math.max(1,hi-lo);
+  const S=hexToRgb(dc.shadow),H=hexToRgb(dc.hi);
+  for(let i=0;i<d.length;i+=4){
+    let t=(0.299*d[i]+0.587*d[i+1]+0.114*d[i+2]-lo)/span; t=Math.max(0,Math.min(1,t));
+    if(kind==='duo'){ d[i]=S[0]+(H[0]-S[0])*t; d[i+1]=S[1]+(H[1]-S[1])*t; d[i+2]=S[2]+(H[2]-S[2])*t; }
+    else { const g=t*255; d[i]=d[i+1]=d[i+2]=g; }
+  }
+  x.putImageData(id,0,0);
+  return st.cache[key]=c.toDataURL('image/jpeg',0.88);
+}
+function setImage(src, isSample){
+  const img=new Image();
+  img.onload=()=>{
+    const M=1400; const r=Math.min(M/img.naturalWidth,M/img.naturalHeight,1);
+    const c=document.createElement('canvas'); c.width=Math.round(img.naturalWidth*r); c.height=Math.round(img.naturalHeight*r);
+    c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+    const url=c.toDataURL('image/jpeg',0.9);
+    const ready=new Image();
+    ready.onload=()=>{
+      st.img=ready; st.origURL=url; st.cache={}; st.treatTouched=false;
+      st.clusters=analyze(ready); buildCustom();
+      if(st.pal===0) st.roles=autoRoles(pal());
+      $('thumb').src=url;
+      $('imgNote').textContent=isSample?'지금은 예시 그림이에요. 내 사진이나 그림을 올려 보세요.':'올린 사진을 분석했어요. 다른 사진으로 바꾸려면 다시 올리세요.';
+      st.treat=recTreat(); renderPalettes(); renderRoles(); renderImage(); renderPoster(); renderCanva();
+    };
+    ready.src=url;
+  };
+  img.onerror=()=>toast('이 파일은 열 수 없어요. JPG나 PNG 사진을 올려 주세요.');
+  img.src=src;
+}
+function recTreat(){ return st.pal===0 ? 'orig' : (harmony(pal())<22 ? 'orig' : 'duo'); }
+/* a palette made from the student's own photo: a light ground, a dark ink, and the photo's most vivid colour */
+function buildCustom(){
+  if(!st.clusters.length){ st.custom=null; return; }
+  const mix=(rgb,to,t)=>rgb.map((v,i)=>v+(to[i]-v)*t);
+  const cs=st.clusters.map(c=>({...c,L:relLum(c.rgb),chroma:Math.hypot(c.lab[1],c.lab[2])}));
+  const light=[...cs].sort((a,b)=>b.L-a.L)[0], dark=[...cs].sort((a,b)=>a.L-b.L)[0];
+  const rest=cs.filter(c=>c!==light&&c!==dark); const vivid=(rest.length?rest:cs).sort((a,b)=>b.chroma-a.chroma)[0];
+  let lg=light.rgb; if(relLum(lg)<0.7) lg=mix(lg,[255,255,255],0.72);
+  let dk=dark.rgb; if(relLum(dk)>0.06) dk=mix(dk,[0,0,0],0.6);
+  st.custom={id:0,mood:'내 사진',names:['사진 밝은색','사진 포인트색','사진 어두운색'],hex:[rgbToHex(lg),rgbToHex(vivid.rgb),rgbToHex(dk)]};
+}
+
+function sampleImage(){
+  const c=document.createElement('canvas'); c.width=900; c.height=680; const x=c.getContext('2d');
+  const g=x.createLinearGradient(0,0,0,680); g.addColorStop(0,'#8CCBEF'); g.addColorStop(1,'#E6F3FA'); x.fillStyle=g; x.fillRect(0,0,900,680);
+  x.fillStyle='#FFD24A'; x.beginPath(); x.arc(760,120,70,0,7); x.fill();
+  x.fillStyle='#7FC277'; x.beginPath(); x.ellipse(250,690,520,250,0,0,7); x.fill();
+  x.fillStyle='#4E9A5C'; x.beginPath(); x.ellipse(760,720,420,240,0,0,7); x.fill();
+  // houses
+  [[90,330,'#F29A72','#B5523B'],[700,350,'#F4D6A0','#9B5A3A']].forEach(([hx,hy,wall,roof])=>{
+    x.fillStyle=wall; x.fillRect(hx,hy,120,100); x.fillStyle=roof; x.beginPath(); x.moveTo(hx-14,hy); x.lineTo(hx+60,hy-58); x.lineTo(hx+134,hy); x.fill();
+    x.fillStyle='#FFFFFF'; x.fillRect(hx+42,hy+40,36,60);
+  });
+  // people holding hands
+  const cols=['#E94F4F','#F2A93B','#3F7FD9','#8E5BD6','#2EA36B']; const xs=[230,340,450,560,670]; const y0=430;
+  x.strokeStyle='#F1C9A8'; x.lineWidth=13; x.lineCap='round';
+  for(let i=0;i<xs.length-1;i++){ x.beginPath(); x.moveTo(xs[i]+26,y0+40); x.quadraticCurveTo((xs[i]+xs[i+1])/2,y0+78,xs[i+1]-26,y0+40); x.stroke(); }
+  xs.forEach((px,i)=>{
+    x.fillStyle=cols[i]; x.beginPath(); x.roundRect(px-32,y0+10,64,104,26); x.fill();
+    x.fillStyle='#2F2A2A'; x.fillRect(px-22,y0+108,16,46); x.fillRect(px+6,y0+108,16,46);
+    x.fillStyle='#F1C9A8'; x.beginPath(); x.arc(px,y0-22,30,0,7); x.fill();
+    x.fillStyle='#3A2B24'; x.beginPath(); x.arc(px,y0-30,30,Math.PI,0); x.fill();
+  });
+  return c.toDataURL('image/png');
+}
+
+/* ---------- render ---------- */
+function renderHead(){
+  $('headChips').innerHTML=pal().hex.map(h=>`<i style="background:${h}"></i>`).join('');
+}
+function renderPresets(){
+  $('presets').innerHTML=WORDS.map(w=>`<button type="button" class="preset" data-w="${esc(w)}" aria-pressed="false">+ ${esc(w)}</button>`).join('')
+    +`<button type="button" class="preset" id="nextEx" aria-pressed="false">예시 문구 다른 것 보기 ↻</button>`;
+}
+function renderPalettes(){
+  const rec=recommendFromText(st.title);
+  $('why').innerHTML=rec.html;
+  $('tabs').innerHTML=MOODS.map(m=>`<button type="button" class="tab" data-m="${m}" aria-pressed="${m===st.filter}">${m}</button>`).join('');
+  let list = st.filter==='추천' ? rec.ids.map(byId) : st.filter==='전체' ? PALETTES : st.filter==='내 사진' ? (st.custom?[st.custom]:[]) : PALETTES.filter(p=>p.mood===st.filter);
+  if(st.pal===0 && st.custom && st.filter!=='내 사진') list=[st.custom,...list];
+  $('pgrid').innerHTML=list.map(p=>`
+    <button type="button" class="pchip" data-id="${p.id}" aria-pressed="${p.id===st.pal}" aria-label="${p.id}번 ${p.names.join(', ')}">
+      ${rec.ids.includes(p.id)&&st.filter!=='추천'?'<span class="tag">추천</span>':''}
+      <span class="sw">${p.hex.map(h=>`<span style="background:${h}"></span>`).join('')}</span>
+      <span class="meta"><span class="no">${p.id===0?'★':String(p.id).padStart(2,'0')}</span><span class="nm">${p.id===0?'내 사진에서 뽑은 색':p.names.join(' · ')}</span></span>
+    </button>`).join('');
+}
+function badgeFor(ratio, big){
+  if(ratio>=4.5) return `<span class="badge good">잘 보여요 ${ratio.toFixed(1)}</span>`;
+  if(ratio>=3) return `<span class="badge ${big?'good':'warn'}">${big?'큰 글씨로 괜찮아요':'조금 흐려요'} ${ratio.toFixed(1)}</span>`;
+  return `<span class="badge bad">잘 안 보여요 ${ratio.toFixed(1)}</span>`;
+}
+function renderRoles(){
+  const p=pal(); const bg=roleHex('bg');
+  const rows=[['bg','배경',null],['title','제목 글자',contrast(roleHex('title'),bg)],['accent','포인트',contrast(roleHex('accent'),bg)]];
+  $('roles').innerHTML=`<p class="label" style="margin:0">색 역할 정하기 · 숫자는 글자가 배경 위에서 얼마나 잘 보이는지예요</p>`+rows.map(([r,name,ratio])=>`
+    <div class="role">
+      <span class="rname">${name}</span>
+      <span class="opts">${p.hex.map((h,i)=>`<button type="button" class="copt" data-role="${r}" data-i="${i}" aria-pressed="${st.roles[r]===i}" style="background:${h}" aria-label="${name}: ${p.names[i]} ${h}"></button>`).join('')}</span>
+      ${ratio===null?'<span class="badge none">'+p.names[st.roles.bg]+'</span>':badgeFor(ratio, r==='title')}
+    </div>`).join('');
+  $('fontSeg').innerHTML=Object.entries(FONTS).map(([k,f])=>`<button type="button" data-f="${k}" aria-pressed="${k===st.font}" style="font-family:${f.title},sans-serif">${f.label}</button>`).join('');
+}
+function renderImage(){
+  const p=pal(); const labs=p.hex.map(labOfHex);
+  $('found').innerHTML=st.clusters.map(c=>{
+    let bi=0,bd=1e9; labs.forEach((l,i)=>{const d=dE(l,c.lab); if(d<bd){bd=d;bi=i}});
+    return `<span class="fcol"><i style="background:${c.hex}"></i>${Math.round(c.w*100)}%<span class="arrow">→</span><i style="background:${p.hex[bi]}"></i>${p.names[bi]}</span>`;
+  }).join('') || '<span class="hint">사진을 올리면 색을 찾아 줘요.</span>';
+  const h=harmony(p); const score=Math.max(5,Math.min(100,Math.round(100-h*1.6)));
+  const [word,col]= h<22?['잘 어울려요','var(--good)'] : h<36?['보통이에요','var(--warn)'] : ['색이 꽤 달라요','var(--bad)'];
+  $('meter').innerHTML=`<span>사진과 색 조합의 어울림</span><span class="bar"><span style="width:${score}%;background:${col}"></span></span><b style="color:${col}">${word}</b>`;
+  const rec=recTreat();
+  $('treatSeg').innerHTML=Object.entries(TREATS).map(([k,v])=>`<button type="button" data-t="${k}" aria-pressed="${k===st.treat}">${v}${k===rec?'<span class="rec">추천</span>':''}</button>`).join('');
+  const dc=duoColors(); const fi=frameIndex();
+  const nameOf=hex=>p.names[p.hex.indexOf(hex)];
+  let html='';
+  if(rec==='orig') html+=`<p><b>원본 그대로 써도 좋아요.</b> 사진 속 색이 이미 이 조합과 비슷해서 자연스럽게 어울려요.</p>`;
+  else html+=`<p><b>‘팔레트 색 입히기’를 추천해요.</b> 사진 색이 조합과 많이 달라서, 사진을 조합 안의 두 색으로 바꾸면 포스터 전체가 한 세트처럼 보여요.</p>`;
+  html+=`<p>색을 입힐 때: 어두운 부분은 <b>${nameOf(dc.shadow)} ${dc.shadow}</b>, 밝은 부분은 <b>${nameOf(dc.hi)} ${dc.hi}</b></p>`;
+  html+=`<p>사진 테두리는 <b>${p.names[fi]} ${p.hex[fi]}</b>로 하면 사진이 배경에서 또렷하게 떠 보여요.</p>`;
+  $('advice').innerHTML=html;
+  const ranked=PALETTES.filter(q=>q.id!==st.pal).map(q=>({q,h:harmony(q)})).sort((a,b)=>a.h-b.h).slice(0,4);
+  $('minis').innerHTML=ranked.map(({q})=>`<button type="button" class="mini" data-id="${q.id}"><span class="sw">${q.hex.map(h=>`<i style="background:${h}"></i>`).join('')}</span>${String(q.id).padStart(2,'0')} ${q.names[1]}</button>`).join('');
+}
+function renderPoster(){
+  const P=$('poster'); const p=pal(); const f=FONTS[st.font];
+  P.dataset.layout=st.layout;
+  P.style.setProperty('--pbg',roleHex('bg')); P.style.setProperty('--ptitle',roleHex('title'));
+  P.style.setProperty('--paccent',roleHex('accent')); P.style.setProperty('--pframe',p.hex[frameIndex()]);
+  let t=esc(st.title||'제목을 써 보세요');
+  if(st.hl && st.title.includes(st.hl)){ const e=esc(st.hl); t=t.split(e).join(`<span class="hl">${e}</span>`); }
+  const T=$('pTitle'); T.innerHTML=t; T.style.fontFamily=f.title+',sans-serif';
+  const S=$('pSub'); S.textContent=st.sub; S.hidden=!st.sub; S.style.fontFamily=f.sub+',sans-serif';
+  $('pFoot').textContent=st.foot; $('pFoot').parentElement.style.fontFamily=f.sub+',sans-serif';
+  $('pImg').src=processed(st.treat)||st.origURL;
+  $('layoutSeg').innerHTML=Object.entries(LAYOUTS).map(([k,v])=>`<button type="button" data-l="${k}" aria-pressed="${k===st.layout}">${v}</button>`).join('')
+    +`<button type="button" id="randLayout" aria-pressed="false">아무거나 ↻</button>`;
+  fitTitle(); renderHead();
+}
+function fitTitle(){
+  const P=$('poster'), T=$('pTitle'); const W=P.clientWidth, H=P.clientHeight; if(!W) return;
+  const cfg={a:[0.135,0.19],b:[0.125,0.16],c:[0.19,0.34],d:[0.14,0.2],e:[0.12,0.16],f:[0.12,0.15]}[st.layout];
+  let size=W*cfg[0]; T.style.fontSize=size+'px';
+  let guard=0;
+  while((T.scrollWidth>T.clientWidth+1 || T.scrollHeight>H*cfg[1]) && size>W*0.05 && guard++<60){ size*=0.95; T.style.fontSize=size+'px'; }
+}
+function renderCanva(){
+  const p=pal(); const f=FONTS[st.font]; const dc=duoColors(); const fi=frameIndex();
+  const rows=[['배경',roleHex('bg'),p.names[st.roles.bg],'포스터 바탕'],['제목 글자',roleHex('title'),p.names[st.roles.title],'큰 글씨, 작은 글씨'],['포인트',roleHex('accent'),p.names[st.roles.accent],`‘${st.hl||'강조 낱말'}’, 줄·동그라미 장식`]];
+  if(p.hex[fi]!==roleHex('accent')) rows.push(['사진 테두리',p.hex[fi],p.names[fi],'사진 둘레']);
+  $('hexlist').innerHTML=rows.map(([r,h,n,use])=>`
+    <div class="hexrow"><i style="background:${h}"></i>
+      <span class="t"><b>${r} · ${n}</b><code>${h}</code><span>${esc(use)}</span></span>
+      <button type="button" class="btn" data-copy="${h}">복사</button></div>`).join('');
+  const photoStep = st.treat==='duo'
+    ? `사진을 올린 뒤 사진 선택 → <b>사진 편집 → 효과 → 듀오톤</b>에서 직접 색을 정해요. 하이라이트 <code>${dc.hi}</code>, 그림자 <code>${dc.shadow}</code>`
+    : st.treat==='gray' ? `사진을 올린 뒤 사진 선택 → <b>사진 편집 → 필터</b>에서 흑백 필터를 골라요.`
+    : `사진을 올리고 원본 그대로 써요. 테두리를 넣으려면 사진 뒤에 사각형(또는 원)을 깔고 색을 <code>${p.hex[fi]}</code>로 바꿔요.`;
+  $('howto').innerHTML=[
+    `캔바에서 <b>디자인 만들기 → 포스터(세로)</b>를 골라요.`,
+    `빈 바탕을 누르고 색상 → <b>+</b> 를 눌러 배경 색 <code>${roleHex('bg')}</code>를 넣어요.`,
+    `제목을 쓰고 글꼴 검색창에 <b>${f.canva.split(' (')[0]}</b>를 쳐 봐요. 없으면 비슷하게 ${f.label} 보이는 글꼴을 골라요.`,
+    photoStep,
+    `미리보기의 배치(${LAYOUTS[st.layout]})를 보면서 글자와 사진 자리를 잡아요.`
+  ].map(s=>`<li>${s}</li>`).join('');
+}
+function renderAll(){ renderPresets(); renderPalettes(); renderRoles(); renderImage(); renderPoster(); renderCanva(); save(); }
+
+/* ---------- events ---------- */
+function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),1800); }
+function choosePalette(id){
+  st.pal=id; st.roles=autoRoles(pal()); st.cache={};
+  if(!st.treatTouched) st.treat=recTreat();
+  renderPalettes(); renderRoles(); renderImage(); renderPoster(); renderCanva(); save();
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  if(b.dataset.w){
+    const next=(st.title.trim()+' '+b.dataset.w).trim();
+    if(next.length>20){ toast('제목은 20자까지예요. 조금 지우고 넣어 보세요'); return; }
+    st.title=next; $('inTitle').value=next; $('inTitle').focus();
+    renderPalettes(); renderPoster(); renderCanva(); save(); return;
+  }
+  if(b.id==='nextEx'){
+    st.exIdx=(st.exIdx+1)%EXAMPLES.length; const p=EXAMPLES[st.exIdx]; st.title=p.t; st.sub=p.s; st.hl=p.h;
+    $('inTitle').value=p.t; $('inSub').value=p.s; $('inHl').value=p.h;
+    renderPalettes(); renderPoster(); renderCanva(); save(); return;
+  }
+  if(b.id==='reroll'){
+    st.seed=(st.seed+7919)%1e9; st.filter='추천';
+    const ids=recommendFromText(st.title).ids; choosePalette(ids[0]); toast('새 추천 4가지를 골라 왔어요'); return;
+  }
+  if(b.id==='mine'){
+    if(!st.custom){ toast('먼저 3번에서 사진을 올려 주세요'); return; }
+    choosePalette(0); toast('내 사진 색으로 조합을 만들었어요'); return;
+  }
+  if(b.id==='randLayout'){
+    const ks=Object.keys(LAYOUTS).filter(k=>k!==st.layout); st.layout=ks[Math.floor(Math.random()*ks.length)];
+    renderPoster(); renderCanva(); save(); return;
+  }
+  if(b.dataset.m){ st.filter=b.dataset.m; renderPalettes(); return; }
+  if(b.classList.contains('pchip') || b.classList.contains('mini')){ choosePalette(+b.dataset.id); if(b.classList.contains('mini')) toast(`${b.dataset.id}번 조합으로 바꿨어요`); return; }
+  if(b.dataset.role){
+    const r=b.dataset.role, i=+b.dataset.i; const other=Object.keys(st.roles).find(k=>k!==r && st.roles[k]===i);
+    if(other) st.roles[other]=st.roles[r]; st.roles[r]=i; st.cache={};
+    renderRoles(); renderImage(); renderPoster(); renderCanva(); save(); return;
+  }
+  if(b.id==='autoRoles'){ st.roles=autoRoles(pal()); st.cache={}; renderRoles(); renderImage(); renderPoster(); renderCanva(); save(); toast('글자가 가장 잘 보이게 정했어요'); return; }
+  if(b.dataset.f){ st.font=b.dataset.f; renderRoles(); renderPoster(); renderCanva(); save(); return; }
+  if(b.dataset.t){ st.treat=b.dataset.t; st.treatTouched=true; renderImage(); renderPoster(); renderCanva(); return; }
+  if(b.dataset.l){ st.layout=b.dataset.l; renderPoster(); renderCanva(); save(); return; }
+  if(b.dataset.copy){
+    const h=b.dataset.copy;
+    const done=()=>{toast(`${h} 복사했어요`)};
+    const fallback=()=>{ const code=b.parentElement.querySelector('code'); const r=document.createRange(); r.selectNodeContents(code); const s=getSelection(); s.removeAllRanges(); s.addRange(r); toast('글자를 길게 눌러 복사하세요'); };
+    try{ navigator.clipboard.writeText(h).then(done,fallback); }catch(err){ fallback(); }
+  }
+});
+const bindInput=(id,key,extra)=>$(id).addEventListener('input',e=>{ st[key]=e.target.value; if(extra) extra(); renderPoster(); renderCanva(); save(); });
+bindInput('inTitle','title',()=>{renderPresets(); renderPalettes();});
+bindInput('inSub','sub',renderPresets);
+bindInput('inHl','hl');
+bindInput('inFoot','foot');
+$('file').addEventListener('change',e=>{
+  const f=e.target.files&&e.target.files[0]; if(!f) return;
+  if(!f.type.startsWith('image/')){ toast('사진 파일(JPG, PNG)만 올릴 수 있어요'); return; }
+  const r=new FileReader(); r.onload=()=>setImage(r.result,false); r.readAsDataURL(f);
+});
+
+/* ---------- boot ---------- */
+$('inTitle').value=st.title; $('inSub').value=st.sub; $('inHl').value=st.hl; $('inFoot').value=st.foot;
+if(st.pal===null || st.pal===0 || !byId(st.pal)){ st.pal=recommendFromText(st.title).ids[0]; st.roles=autoRoles(pal()); }
+renderAll();
+setImage(sampleImage(), true);
+new ResizeObserver(()=>fitTitle()).observe($('poster'));
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitTitle);
+document.fonts && document.fonts.addEventListener && document.fonts.addEventListener('loadingdone',fitTitle);
+</script>
+
+</body>
+</html>
